@@ -1,6 +1,5 @@
-- sudo docker-compose up -d --build
-- sudo docker-compose exec app /bin/bash 
-- php artisan migrate 
-- php artisan permission:create-role user
-- php artisan permission:create-role admin
-- после зделать акк і дать йому адмін права
+установить докер и docker-compose на вашу машину
+запустить докер 
+ввести команду sudo docker-compose up -d --build
+після чого ввести команду sudo docker-compose ps 
+і готово -- ця інструкція на Linux систему на Windows буде чучуть інакше
