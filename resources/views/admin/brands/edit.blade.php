@@ -54,15 +54,32 @@
                                         <br>
                                         <form id="demo-form2" data-parsley-validate=""
                                               class="form-horizontal form-label-left"
-                                              novalidate="" action="{{ route('SubCategory.store')}}" method="POST">
+                                              novalidate="" action="{{ route('Brand.update',$brand->id)}}" method="POST">
+                                            @method('PUT')
                                             @csrf
                                             <div class="item form-group">
                                                 <label class="col-form-label col-md-3 col-sm-3 label-align"
                                                        for="first-name">Назва <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 ">
-                                                    <input type="text" name="title" id="name" required="required"
+                                                    <input type="text" name="name" value="{{$brand->name}}" id="name" required="required"
                                                            class="form-control ">
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                       for="last-name">Статус <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 ">
+                                                    <select name="show"  class="form-control">
+                                                        @if($brand->show == 1)
+                                                            <option value="1">Відображати</option>
+                                                            <option value="0">Приховати</option>
+                                                        @else
+                                                            <option value="0">Приховати</option>
+                                                            <option value="1">Відображати</option>
+                                                        @endif
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="ln_solid"></div>
@@ -95,7 +112,7 @@
                                                        for="first-name">Title <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 ">
-                                                    <input type="text" name="title_m" id="name" required="required"
+                                                    <input type="text" name="title_m" value="{{$brand->title_m}}" id="name" required="required"
                                                            class="form-control ">
                                                 </div>
                                             </div>
@@ -104,16 +121,7 @@
                                                        for="first-name">Description <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 ">
-                                                    <textarea class="form-control "name="description_m" value="" ></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                       for="first-name">Keyword <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 ">
-                                                    <textarea class="form-control "name="keyword_m" value="" ></textarea>
-                                                    <input hidden name="category_id" value="{{$catId->id}}">
+                                                    <textarea class="form-control" name="description_m" >{{$brand->description_n}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="ln_solid"></div>
@@ -137,6 +145,7 @@
 
 
 @endsection
+
 
 
 

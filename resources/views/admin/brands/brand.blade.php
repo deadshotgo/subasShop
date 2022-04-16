@@ -106,7 +106,7 @@
                                         <tbody>
                                         @foreach($brands as $brand)
                                             <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
-                                                <td class="" tabindex="0">{{$brand->title}}</td>
+                                                <td class="" tabindex="0">{{$brand->name}}</td>
                                                 <td class="sorting_1">@if($brand->show == 0) Приховано
                                                     @else Відображено  @endif</td>
                                                 <td>302</td>

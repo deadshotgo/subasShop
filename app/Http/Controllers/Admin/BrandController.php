@@ -41,7 +41,26 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $newBrand = new Brand();
+            $newBrand->name = $request->name;
+            $newBrand->show = $request->show;
+            if($request->title_m){
+                $newBrand->title_m = $request->title_m;
+            }else {
+                $newBrand->title_m = $request->name;
+            }if($request->description_n){
+                $newBrand->description_n = $request->description_m;
+            }else{
+                $newBrand->description_n = $request->name;
+            }
+
+            $newBrand->save();
+
+            return redirect()->back()->with('message', 'Бренд було успішно добавлено');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('danger', 'Не вірно введені данні');
+        }
     }
 
     /**
@@ -62,8 +81,12 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = Brand::query()->where('id',$id)->first();
+        return view('admin.brands.edit',[
+            'brand' => $brand,
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -74,7 +97,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $brand = Brand::query()->where('id',$id)->first();
+        $brand->name = $request->name;
+        $brand->show = $request->show;
+        $brand->title_m = $request->title_m;
+        $brand->description_n = $request->description_m;
+        $brand->save();
+        return redirect()->back()->with('message', 'Бренд було успішно редаговано');
     }
 
     /**
@@ -85,6 +114,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subCat = Brand::where('id',$id)->first();
+        $subCat->delete();
+        return redirect()->back()->with('message', 'Бренд було успішно видалено');
     }
 }
