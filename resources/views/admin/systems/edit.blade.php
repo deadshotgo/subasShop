@@ -20,6 +20,7 @@
                 @endif
             </div>
             <div>
+
                 @if(session('message'))
                     <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
@@ -38,6 +39,7 @@
                            aria-controls="profile" aria-selected="false">Meta</a>
                     </li>
                 </ul>
+
             </div>
             <div class="row right">
                 <div class="col-md-10 col-sm-10 ">
@@ -69,7 +71,9 @@
                                             <div class="ln_solid"></div>
                                             <div class="item form-group right">
                                                 <div class="col-md-12 col-sm-12 ">
+                                                    <a href="{{route('System.index')}}" class="btn btn-primary" >Назад</a>
                                                     <button class="btn btn-danger" type="reset">Скинути</button>
+
                                                 </div>
                                             </div>
 
@@ -126,6 +130,7 @@
             </div>
         </div>
     </div>
+
 
 
 @endsection

@@ -69,6 +69,7 @@
                                             <div class="ln_solid"></div>
                                             <div class="item form-group right">
                                                 <div class="col-md-12 col-sm-12 ">
+                                                    <a href="{{route('SubCategory.index')}}" class="btn btn-primary" >Назад</a>
                                                     <button class="btn btn-danger" type="reset">Скинути</button>
                                                 </div>
                                             </div>
