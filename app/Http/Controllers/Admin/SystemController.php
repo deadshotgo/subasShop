@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use App\Models\System;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class SystemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-
-        $brands = Brand::all();
-        return view('admin.brands.brand',[
-            'brands' => $brands,
+        $systems = System::all();
+        return view('admin.systems.system',[
+            'systems' => $systems,
         ]);
     }
 
@@ -29,8 +28,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.brands.create');
-
+      return view('admin.systems.create');
     }
 
     /**
@@ -42,22 +40,22 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         try {
-            $newBrand = new Brand();
-            $newBrand->name = $request->name;
-            $newBrand->show = $request->show;
+            $newSystem = new System();
+            $newSystem->title = $request->title;
+
             if($request->title_m){
-                $newBrand->title_m = $request->title_m;
+                $newSystem->title_m = $request->title_m;
             }else {
-                $newBrand->title_m = $request->name;
-            }if($request->description_n){
-                $newBrand->description_n = $request->description_m;
+                $newSystem->title_m = $request->title;
+            }if($request->description_m){
+                $newSystem->description_m = $request->description_m;
             }else{
-                $newBrand->description_n = $request->name;
+                $newSystem->description_m = $request->title;
             }
 
-            $newBrand->save();
+            $newSystem->save();
 
-            return redirect()->back()->with('message', 'Бренд було успішно добавлено');
+            return redirect()->back()->with('message', 'ОС було успішно добавлено');
         } catch (\Exception $e) {
             return redirect()->back()->with('danger', 'Не вірно введені данні');
         }
@@ -71,6 +69,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -81,12 +80,11 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::query()->where('id',$id)->first();
-        return view('admin.brands.edit',[
-            'brand' => $brand,
+        $system = System::query()->where('id',$id)->first();
+        return view('admin.systems.edit',[
+            'system' => $system,
         ]);
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -97,13 +95,12 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::query()->where('id',$id)->first();
-        $brand->name = $request->name;
-        $brand->show = $request->show;
-        $brand->title_m = $request->title_m;
-        $brand->description_n = $request->description_m;
-        $brand->save();
-        return redirect()->back()->with('message', 'Бренд було успішно редаговано');
+        $system = System::query()->where('id',$id)->first();
+        $system->title = $request->title;
+        $system->title_m = $request->title_m;
+        $system->description_m = $request->description_m;
+        $system->save();
+        return redirect()->back()->with('message', 'ОС було успішно редаговано');
     }
 
     /**
@@ -114,8 +111,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Brand::where('id',$id)->first();
+        $delete = System::where('id',$id)->first();
         $delete->delete();
-        return redirect()->back()->with('message', 'Бренд було успішно видалено');
+        return redirect()->back()->with('message', 'ОС було успішно видалено');
     }
 }

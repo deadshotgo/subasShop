@@ -65,6 +65,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('Category.index')}}">Категорії</a></li>
                                     <li><a href="{{route('Brand.index')}}">Бренди</a></li>
+                                    <li><a href="{{route('System.index')}}">Операційні системи</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-tag"></i> Продукти<span class="fa fa-chevron-down"></span></a>
@@ -75,7 +76,6 @@
                             </li>
                             <li><a><i class="fa fa-sitemap"></i> Інше<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#">Операційні системи</a></li>
                                 </ul>
                             </li>
                         </ul>
