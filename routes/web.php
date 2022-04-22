@@ -52,8 +52,11 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('SubCategory',Admin\SubCategoryController::class);
         Route::resource('Brand',Admin\BrandController::class);
         Route::resource('System',Admin\SystemController::class);
+        Route::resource('Product',Admin\ProductController::class);
         Route::get('/sub-cat/{id}',
             'App\Http\Controllers\Admin\SubCategoryController@myCreate')->name('/sub_cat_create');
+        Route::get('/cat-to-prod/',
+            'App\Http\Controllers\Admin\OtheController@addToProd')->name('/cat-to-prod');
     });
 
     Route::get('/admin-home', function () {

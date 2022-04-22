@@ -70,8 +70,8 @@
                             </li>
                             <li><a><i class="fa fa-tag"></i> Продукти<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#">Всі продукти</a></li>
-                                    <li><a href="#">Додати продукт</a></li>
+                                    <li><a href="{{route('Product.index')}}">Всі продукти</a></li>
+                                    <li><a href="{{route('/cat-to-prod')}}">Додати по категорії</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-sitemap"></i> Інше<span class="fa fa-chevron-down"></span></a>
