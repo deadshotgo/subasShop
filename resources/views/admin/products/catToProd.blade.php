@@ -49,6 +49,7 @@
                     </div>
                 @endif
             </div>
+            <div class="row right">
             <div class="table-responsive">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -56,6 +57,7 @@
                             <h2>Додати продукт <small>по категорії</small></h2>
                             <div class="clearfix"></div>
                         </div>
+
                         <div class="x_content" style="display: block;">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -119,6 +121,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

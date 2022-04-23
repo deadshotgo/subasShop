@@ -63,6 +63,7 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
+                        <div class="row right">
                         <div class="x_content" style="display: block;">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -130,6 +131,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
