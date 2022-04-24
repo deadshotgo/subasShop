@@ -11,8 +11,11 @@ class Product extends Model
     public function Brand(){
         return $this->belongsTo(Brand::class);
     }
-    public function Color(){
-        return $this->belongsTo(Color::class);
+    public function colors(){
+        return $this->hasMany(Color::class);
+    }
+    public function Images(){
+        return $this->hasMany(Image::class);
     }
     public function System(){
         return $this->belongsTo(System::class);

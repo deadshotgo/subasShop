@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('images');
             $table->text('description');
             $table->text('information');
-            $table->foreignId('color_id')->constrained();
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
             $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('system_id')->constrained()->onDelete('cascade');
