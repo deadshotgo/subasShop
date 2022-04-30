@@ -23,7 +23,8 @@ function SmartWizard(target, options) {
     this.buttons = {
         next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("buttonNext"),
         previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("buttonPrevious"),
-        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("buttonFinish")
+        finish  : $('<button>'+options.labelFinish+'</button>').attr("type","submit").addClass("buttonFinish")
+
     };
 
     /*
@@ -80,7 +81,9 @@ function SmartWizard(target, options) {
                     }
                 }
             }
+            submit()
             return false;
+
         });
 
         $($this.steps).bind("click", function(e){
@@ -437,9 +440,9 @@ $.fn.smartWizard.defaults = {
     enableFinishButton: false, // make finish button enabled always
 	hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead?
     errorSteps:[],    // Array Steps with errors
-    labelNext:'Next',
-    labelPrevious:'Previous',
-    labelFinish:'Finish',
+    labelNext:'Продовжити',
+    labelPrevious:'Назад',
+    labelFinish:'Зберегти',
     noForwardJumping: false,
     onLeaveStep: null, // triggers when leaving a step
     onShowStep: null,  // triggers when showing a step

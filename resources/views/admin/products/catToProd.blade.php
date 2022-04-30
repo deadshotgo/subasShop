@@ -111,7 +111,7 @@
                                                     <td>302</td>
                                                     <td>{{$category->created_at}}</td>
                                                     <td>$145,000</td>
-                                                    <td><a class="btn btn-primary btn-sm "  href="{{route('Category.edit',$category->id)}}">Додати продукт</a></td>
+                                                    <td><a class="btn btn-primary btn-sm "  href="{{route('/create-prod',$category->id)}}">Додати продукт</a></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

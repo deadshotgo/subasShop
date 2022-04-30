@@ -20,6 +20,9 @@ class Product extends Model
     public function System(){
         return $this->belongsTo(System::class);
     }
+    public function Category(){
+        return $this->belongsTo(Category::class);
+    }
     public function Subcategory(){
         return $this->belongsTo(Subcategory::class);
     }

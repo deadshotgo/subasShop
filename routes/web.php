@@ -53,10 +53,20 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('Brand',Admin\BrandController::class);
         Route::resource('System',Admin\SystemController::class);
         Route::resource('Product',Admin\ProductController::class);
+        Route::resource('Images',Admin\ImagesController::class);
         Route::get('/sub-cat/{id}',
             'App\Http\Controllers\Admin\SubCategoryController@myCreate')->name('/sub_cat_create');
         Route::get('/cat-to-prod/',
             'App\Http\Controllers\Admin\OtheController@addToProd')->name('/cat-to-prod');
+        Route::get('/create-prod-cat_id/{id}/',
+            'App\Http\Controllers\Admin\ProductController@Mycreate')->name('/create-prod');
+        Route::get(
+            '/prod-images/{id}',
+            'App\Http\Controllers\Admin\OtheController@prodImg')->name('/prod-images');
+        Route::POST(
+            '/save-prod-img/{id}',
+            'App\Http\Controllers\Admin\OtheController@saveProdImg')->name('/images-save');
+
     });
 
     Route::get('/admin-home', function () {
