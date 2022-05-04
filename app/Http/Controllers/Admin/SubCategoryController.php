@@ -126,7 +126,7 @@ echo 123;
         return redirect()->back()->with('message', 'Категорію було успішно видалено');
     }
 
-    public function myCreate($id){
+    public function MyCreate($id){
         $catId = Category::query()->where('id',$id)->first();
         return view('admin.subcat.create',[
             'catId' => $catId,

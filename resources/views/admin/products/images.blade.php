@@ -1,6 +1,8 @@
 @extends('layouts.admin_layouts')
 @section('title','create-page')
 @section('custom_js')
+
+
     <!-- jQuery Smart Wizard -->
     <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.js"></script>
     <script type="text/javascript" src="/admin/colorbox-master/jquery.colorbox-min.js"></script>
@@ -54,17 +56,24 @@
             });
         }
     </script>
+    <script src="/admin/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 @endsection
 @section('custom_css')
+    <!-- Bootstrap Colorpicker -->
+    <link href="/admin/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="/admin/vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/admin/build/css/custom.min.css" rel="stylesheet">
     <link href="/styles/prod.css" rel="stylesheet">
     <link href="/admin/colorbox-master/example1/colorbox.css" rel="stylesheet">
 @endsection
 
 @section('content')
 
-    <div role="main" class="right_col  ">
-        <div class="">
 
+    <div role="main" class="right_col  ">
+
+        <div class="">
             <div>
                 @if(session('danger'))
                     <div class="alert alert-danger" role="alert">
@@ -83,11 +92,11 @@
 
 
             </div>
-
+        <div class="col-sm-12">
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <form method="POST" action="{{route('Images.store')}}">
+                        <form method="POST" action="{{route('/save-images')}}">
                             @csrf
                             <input value="{{$prod->id}}" name="prod_id" hidden>
                             <div class="form-group row">
@@ -115,7 +124,7 @@
 
 
                                                 <form
-                                                    action="{{route('Images.destroy',$img->id)}}"
+                                                    action="{{route('/delete-images',$img->id)}}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -130,7 +139,59 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+            <!-- new tab-->
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <form method="POST" action="{{route('/save-color')}}">
+                            @csrf
+                            <input value="{{$prod->id}}" name="prod_id" hidden>
+                            <div class="form-group row">
+
+                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Добавити колір <span class="required">*</span></label>
+                                <div class="col-md-4 col-sm-6  ">
+                                    <div class="input-group demo2 colorpicker-element">
+                                        <input type="text" name="color" value="#e01ab5" class="form-control">
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                                   <button class="btn btn-success" type="submit">Зберегти</button>
+                            </div>
+                        </form>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div class="row">
+                            @foreach($colors as $color)
+                                <div class="col-md-55">
+                                    <div class="thumbnail">
+                                        <div class="image view view-first">
+                                            <div style="background-color: {{$color->color}}; width: 100%; height: 90%"></div>
+                                            <div class="mask">
+                                                <p>Your id {{$color->id}}</p>
+                                                <form
+                                                    action="{{route('/delete-color',$color->id)}}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="color: white; font-size: 16px" class=" btn  delete-btn" type="submit">Видалити</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>create by WebAbssent
+        </div>
 
         </div>
     </div>

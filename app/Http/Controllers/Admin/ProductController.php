@@ -32,7 +32,7 @@ class ProductController extends Controller
         //
     }
 
-    public function Mycreate($id)
+    public function MyCreate($id)
     {
         $category = Category::query()->where('id', $id)->first();
         $sub_category = Subcategory::query()->where('category_id', $id)->get();

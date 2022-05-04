@@ -53,19 +53,44 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('Brand',Admin\BrandController::class);
         Route::resource('System',Admin\SystemController::class);
         Route::resource('Product',Admin\ProductController::class);
-        Route::resource('Images',Admin\ImagesController::class);
+        // ******** creat controllers
+
         Route::get('/sub-cat/{id}',
-            'App\Http\Controllers\Admin\SubCategoryController@myCreate')->name('/sub_cat_create');
+            'App\Http\Controllers\Admin\SubCategoryController@MyCreate')->name('/sub_cat_create');
+        Route::get('/create-prod-cat_id/{id}/',
+            'App\Http\Controllers\Admin\ProductController@MyCreate')->name('/create-prod');
+
+        // ******* end controllers
+        // ********* view controller
+
         Route::get('/cat-to-prod/',
             'App\Http\Controllers\Admin\OtheController@addToProd')->name('/cat-to-prod');
-        Route::get('/create-prod-cat_id/{id}/',
-            'App\Http\Controllers\Admin\ProductController@Mycreate')->name('/create-prod');
+
         Route::get(
             '/prod-images/{id}',
             'App\Http\Controllers\Admin\OtheController@prodImg')->name('/prod-images');
-        Route::POST(
-            '/save-prod-img/{id}',
-            'App\Http\Controllers\Admin\OtheController@saveProdImg')->name('/images-save');
+
+        // ******** end view
+        // ******** save controllers
+
+        Route::post(
+            '/save-prod-img/',
+            'App\Http\Controllers\Admin\OtheController@storeImages')->name('/save-images');
+        Route::post(
+            '/save-prod-color/',
+            'App\Http\Controllers\Admin\OtheController@storeColor')->name('/save-color');
+
+        // ********* end save
+        // ********* destroy contrpollers
+
+        Route::delete(
+            '/delete-prod-images/{id}',
+            'App\Http\Controllers\Admin\OtheController@destroyImages')->name('/delete-images');
+        Route::delete(
+            '/delete-prod-color/{id}',
+            'App\Http\Controllers\Admin\OtheController@destroyColors')->name('/delete-color');
+
+        // ********* end destroy
 
     });
 
