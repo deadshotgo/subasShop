@@ -31,7 +31,9 @@
         <script src="/admin/vendors/pdfmake/build/vfs_fonts.js"></script>
 
     @endsection
+
     <div class="right_col" role="main">
+
         <div class="row" style="display: inline-block;">
             <div>
                 @if(session('danger'))
@@ -49,8 +51,10 @@
                     </div>
                 @endif
             </div>
+
+            <div class="col-12 col-sm-12 ">
             <div class="table-responsive">
-                <div class="col-md-12 col-sm-12 ">
+
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Категорії <small>тест</small></h2>
@@ -63,7 +67,7 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="row right">
+
                         <div class="x_content" style="display: block;">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -77,17 +81,14 @@
                                                     aria-label="Name: activate to sort column ascending">Назва
                                                 </th>
                                                 <th class="sorting_desc" tabindex="0" aria-controls="datatable-buttons"
-                                                    rowspan="1" colspan="1" style="width: 155px;"
+                                                    rowspan="1" colspan="1" style="width: 105px;"
                                                     aria-label="Position: activate to sort column ascending"
                                                     aria-sort="descending">Категорія
                                                 </th>
+
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                                    rowspan="1" colspan="1" style="width: 54px;"
-                                                    aria-label="Office: activate to sort column ascending">QTY
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                                    rowspan="1" colspan="1" style="width: 50px;"
-                                                    aria-label="Age: activate to sort column ascending">Сума
+                                                    rowspan="1" colspan="1" style="width: 100px;"
+                                                    aria-label="Age: activate to sort column ascending">Операційна система
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                     rowspan="1" colspan="1" style="width: 69px;"
@@ -95,9 +96,10 @@
 
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                                    rowspan="1" colspan="1" style="width: 55px;"
-                                                    aria-label="Salary: activate to sort column ascending">Детально
+                                                    rowspan="1" colspan="1" style="width: 54px;"
+                                                    aria-label="Office: activate to sort column ascending">Кількість/шт
                                                 </th>
+
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                     rowspan="1" colspan="1" style="width: 55px;"
                                                     aria-label="Salary: activate to sort column ascending">Видалити
@@ -108,29 +110,43 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                              @foreach($products as $product)
                                                 <tr role="row" class="odd">
-                                                    <td class="" tabindex="0"></td>
-                                                    <td class="sorting_1"></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><a class="btn btn-success btn-sm "  href="">Детально</a></td>
+                                                    <td class="" tabindex="0">{{$product->title}}</td>
+                                                    @if($product->category != null)
+                                                        <td>{{$product->category->title}}</td>
+                                                    @else
+                                                        <td> - </td>
+                                                    @endif
+                                                    @if($product->system != null)
+                                                        <td>{{$product->system->title}}</td>
+                                                    @else
+                                                        <td> - </td>
+                                                    @endif
+                                                    @if($product->brand != null)
+                                                        <td>{{$product->brand->name}}</td>
+                                                    @else
+                                                        <td> -</td>
+                                                    @endif
+                                                    @if($product->QTY == 0)<td style="background-color: red">{{$product->QTY}}</td>
+                                                    @else <td>{{$product->QTY}}</td>
+                                                    @endif
                                                     <td><form
-                                                            action=""
+                                                            action="{{route('Product.destroy',$product->id)}}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger btn-sm delete-btn" type="submit">Видалити</button>
                                                         </form></td>
-                                                    <td><a class="btn btn-primary btn-sm "  href="">Редагувати</a></td>
+                                                    <td><a class="btn btn-primary btn-sm "  href="{{route('Product.show', $product->id)}}" >Детально</a></td>
                                                 </tr>
-
+                                              @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
                     </div>
                     </div>
                 </div>

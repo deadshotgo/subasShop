@@ -152,7 +152,9 @@
                                                 @endforeach
 
                                             </select>
-                                        </div>
+                                                    <a style="color: #00aeef" href="{{route('/sub_cat_create',$category->id)}}"><i class="fa fa-plus-square-o"></i> Добавити підкатегорію</a>
+
+                                            </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="middle-name"  class="col-form-label col-md-3 col-sm-3 label-align">Бренд <span class="required">*</span></label>
@@ -163,6 +165,8 @@
                                                         <option value="{{$brand->id}}">{{$brand->name}}</option>
                                                     @endforeach
                                                 </select>
+                                                <a style="color: #00aeef" href="{{route('Brand.create')}}"><i class="fa fa-plus-square-o"></i> Добавити бренд</a>
+
                                             </div>
                                         </div>
 
@@ -175,7 +179,7 @@
                                                         <option value="{{$system->id}}">{{$system->title}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                                <a style="color: #00aeef" href="{{route('System.create')}}"><i class="fa fa-plus-square-o"></i> Добавити систему</a></div>
                                         </div>
                                     <div class="form-group row">
                                         <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Головна картинка <span class="required">*</span></label>

@@ -36,7 +36,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                    <a href="{{route('/admin-home')}}" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -94,7 +94,9 @@
                 </div>
                 <nav class="nav navbar-nav">
                     <ul class=" navbar-right">
+
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
+                            <a style="padding-right: 30px" href="" ><i class="fa fa-refresh"></i> Обновить  </a>
                             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                                 <img src="/admin/images/img.jpg" alt="">{{\Illuminate\Support\Facades\Auth::user()['name']}}
                             </a>

@@ -108,15 +108,16 @@
                                             </thead>
                                             <tbody>
                                             @foreach($categories as $category)
-                                                <?php $product = \App\Models\Subcategory::where('category_id', $category->id)->count();?>
+                                                <?php $subcategory = \App\Models\Subcategory::where('category_id', $category->id)->count();?>
+                                                <?php $product= \App\Models\Product::where('category_id', $category->id)->count();?>
 
                                             <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                 <td class="" tabindex="0">{{$category->title}}</td>
                                                 <td class="sorting_1">@if($category->show == 0) Приховано
                                                     @else Відображено  @endif</td>
                                                 <td><a href="{{route('SubCategory.show',$category->id)}}"
-                                                       style="cursor: pointer;color: #0e90d2"><?= $product ?></a></td>
-                                                <td>302</td>
+                                                       style="cursor: pointer;color: #0e90d2"><?= $subcategory ?></a></td>
+                                                <td>{{$product}}</td>
                                                 <td>{{$category->created_at}}</td>
                                                 <td>$145,000</td>
                                                 <td><form

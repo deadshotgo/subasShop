@@ -19,11 +19,11 @@ return new class extends Migration
             $table->integer('QTY');
             $table->integer('price');
             $table->text('images');
-            $table->text('description');
-            $table->text('information');
+            $table->text('description')->nullable();
+            $table->text('information')->nullable();
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subcategory_id')->constrained();
-            $table->foreignId('system_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
+            $table->foreignId('system_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
         });
     }

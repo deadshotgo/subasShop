@@ -34,7 +34,7 @@ class OtheController extends Controller
    }
    // ********* end views
 
-   // ********** save images for product
+   // ********** store controllers
     public function storeImages(Request $request)
     {
         try {
@@ -47,9 +47,7 @@ class OtheController extends Controller
             return redirect()->back()->with('danger', 'Не вірно введені данні');
         }
     }
-    // ************
 
-    // ************ save color for product
      public function storeColor(Request $request)
      {
        try {

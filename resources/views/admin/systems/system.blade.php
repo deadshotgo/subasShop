@@ -105,10 +105,11 @@
                                         </thead>
                                         <tbody>
                                         @foreach($systems as $system)
+                                            <?php $product= \App\Models\Product::where('system_id', $system->id)->count();?>
                                             <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                 <td class="" tabindex="0">{{$system->title}}</td>
                                                 <td class="sorting_1">Відображено</td>
-                                                <td>302</td>
+                                                <td>{{$product}}</td>
                                                 <td>{{$system->created_at}}</td>
                                                 <td>$145,000</td>
                                                 <td><form
