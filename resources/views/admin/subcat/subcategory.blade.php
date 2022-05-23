@@ -115,12 +115,14 @@
                                         <tbody>
                                         @foreach($subCats as $subCat)
                                             <?php $product = \App\Models\Product::where('subcategory_id', $subCat->id)->count();?>
-                                            @if($loop->index % 2 == 0 )
-                                                <tr role="row" class="odd">
+                                            <?php $productSum= \App\Models\Product::query()->select(['price'])->where('subcategory_id',$subCat->id
+                                            )->sum('price');?>
+
+                                                <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                     <td class="sorting_1">{{$subCat->id}}</td>
                                                     <td class="sorting_1">{{$subCat->title}}</td>
                                                     <td><?= $product ?></td>
-                                                    <td>10000 грн</td>
+                                                    <td>{{$productSum}} грн</td>
                                                     <td>{{$subCat->created_at}}</td>
                                                     <td>
                                                         <form
@@ -140,31 +142,6 @@
                                                 </tr>
 
                                                 </tr>
-                                            @else
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">{{$subCat->id}}</td>
-                                                    <td class="sorting_1">{{$subCat->title}}</td>
-                                                    <td><?= $product ?></td>
-                                                    <td>10000 грн</td>
-                                                    <td>{{$subCat->created_at}}</td>
-                                                    <td>
-                                                        <form
-                                                            action="{{route('SubCategory.destroy',$subCat->id)}}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger btn-sm delete-btn"
-                                                                    type="submit">Видалити
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                    <td><a class="btn btn-primary btn-sm "
-                                                           href="{{route('SubCategory.edit',$subCat->id)}}">Редагувати</a>
-                                                    </td>
-                                                </tr>
-
-                                                </tr>
-                                            @endif
                                         @endforeach
                                         </tbody>
                                     </table>

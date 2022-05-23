@@ -106,12 +106,14 @@
                                         <tbody>
                                         @foreach($systems as $system)
                                             <?php $product= \App\Models\Product::where('system_id', $system->id)->count();?>
+                                            <?php $productSum= \App\Models\Product::query()->select(['price'])->where('system_id',$system->id
+                                            )->sum('price');?>
                                             <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                 <td class="" tabindex="0">{{$system->title}}</td>
                                                 <td class="sorting_1">Відображено</td>
                                                 <td>{{$product}}</td>
                                                 <td>{{$system->created_at}}</td>
-                                                <td>$145,000</td>
+                                                <td>{{$productSum}} грн</td>
                                                 <td><form
                                                         action="{{route('System.destroy',$system->id)}}"
                                                         method="POST">

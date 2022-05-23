@@ -102,6 +102,9 @@
                                             @foreach($categories as $category)
                                                 <?php $subcategory = \App\Models\Subcategory::where('category_id', $category->id)->count();?>
                                                 <?php $product= \App\Models\Product::where('category_id', $category->id)->count();?>
+                                                <?php $productSum= \App\Models\Product::query()->select(['price'])->where('category_id',$category->id
+                                                )->sum('price');?>
+
                                                 <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                     <td class="" tabindex="0">{{$category->title}}</td>
                                                     <td class="sorting_1">@if($category->show == 0) Приховано
@@ -110,7 +113,7 @@
                                                            style="cursor: pointer;color: #0e90d2"><?= $subcategory ?></a></td>
                                                     <td>{{$product}}</td>
                                                     <td>{{$category->created_at}}</td>
-                                                    <td>$145,000</td>
+                                                    <td>{{$productSum}} грн</td>
                                                     <td><a class="btn btn-primary btn-sm "  href="{{route('/create-prod',$category->id)}}">Додати продукт</a></td>
                                                 </tr>
                                             @endforeach
