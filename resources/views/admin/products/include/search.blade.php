@@ -53,12 +53,15 @@
             </div>
 
             <div class="col-12 col-sm-12 ">
-            <div class="table-responsive">
+                <div class="table-responsive">
 
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Продукти</h2>
+                            <h2>Продукти <small></small></h2>
                             <ul class="nav navbar-right panel_toolbox">
+                                <li class="dropdown">
+
+                                </li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -75,11 +78,7 @@
                                                     rowspan="1" colspan="1" style="width: 111px;"
                                                     aria-label="Name: activate to sort column ascending">Назва
                                                 </th>
-                                                <th class="sorting_desc" tabindex="0" aria-controls="datatable-buttons"
-                                                    rowspan="1" colspan="1" style="width: 105px;"
-                                                    aria-label="Position: activate to sort column ascending"
-                                                    aria-sort="descending">Категорія
-                                                </th>
+
 
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                     rowspan="1" colspan="1" style="width: 100px;"
@@ -89,6 +88,11 @@
                                                     rowspan="1" colspan="1" style="width: 69px;"
                                                     aria-label="Start date: activate to sort column ascending">Бренд
 
+                                                </th>
+                                                <th class="sorting_desc" tabindex="0" aria-controls="datatable-buttons"
+                                                    rowspan="1" colspan="1" style="width: 105px;"
+                                                    aria-label="Position: activate to sort column ascending"
+                                                    aria-sort="descending">Ціна
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
                                                     rowspan="1" colspan="1" style="width: 54px;"
@@ -105,14 +109,10 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                              @foreach($products as $product)
+                                            @foreach($products as $product)
+
                                                 <tr role="row" class="odd">
                                                     <td class="" tabindex="0">{{$product->title}}</td>
-                                                    @if($product->category != null)
-                                                        <td>{{$product->category->title}}</td>
-                                                    @else
-                                                        <td> - </td>
-                                                    @endif
                                                     @if($product->system != null)
                                                         <td>{{$product->system->title}}</td>
                                                     @else
@@ -123,6 +123,12 @@
                                                     @else
                                                         <td> -</td>
                                                     @endif
+                                                    @if($product->price != null)
+                                                        <td>{{$product->price}}</td>
+                                                    @else
+                                                        <td> -</td>
+                                                    @endif
+
                                                     @if($product->QTY == 0)<td style="background-color: red">{{$product->QTY}}</td>
                                                     @else <td>{{$product->QTY}}</td>
                                                     @endif
@@ -135,14 +141,14 @@
                                                         </form></td>
                                                     <td><a class="btn btn-primary btn-sm "  href="{{route('Product.show', $product->id)}}" >Детально</a></td>
                                                 </tr>
-                                              @endforeach
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
 
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

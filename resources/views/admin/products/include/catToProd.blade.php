@@ -100,8 +100,8 @@
                                             </thead>
                                             <tbody>
                                             @foreach($categories as $category)
-                                                <?php $subcategory = \App\Models\Subcategory::where('category_id', $category->id)->count();?>
-                                                <?php $product= \App\Models\Product::where('category_id', $category->id)->count();?>
+                                                <?php $subcategory = \App\Models\Subcategory::query()->select(['id'])->where('category_id', $category->id)->count();?>
+                                                <?php $product= \App\Models\Product::query()->select(['id'])->where('category_id', $category->id)->count();?>
                                                 <?php $productSum= \App\Models\Product::query()->select(['price'])->where('category_id',$category->id
                                                 )->sum('price');?>
 

@@ -21,30 +21,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-       return view('admin.products.product',[
-           'products' => $products,
-       ]);
+        $products = Product::query()->select('id','title','category_id','system_id','brand_id','QTY')->get();
+        return view('admin.products.product', [
+            'products' => $products,
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param int $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
 
     public function MyCreate($id)
     {
-        $category = Category::query()->where('id', $id)->first();
-        $sub_category = Subcategory::query()->where('category_id', $id)->get();
-        $brand = Brand::query()->orderBy('name')->get();
-         $system = System::query()->orderBy('title')->get();
-        return view('admin.products.create',[
-             'category' => $category,
+        $category = Category::query()->select('id','title')->where('id', $id)->first();
+        $sub_category = Subcategory::query()->select('id','title')->where('category_id', $id)->get();
+        $brand = Brand::query()->select('id','name')->orderBy('name')->get();
+        $system = System::query()->select('id','title')->orderBy('title')->get();
+        return view('admin.products.create', [
+            'category' => $category,
             'sub_category' => $sub_category,
             'brand' => $brand,
             'system' => $system,
@@ -54,7 +51,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -75,7 +72,7 @@ class ProductController extends Controller
             $new_product->category_id = $request->category_id;
             $new_product->save();
 
-            return redirect()->to(route('Product.show',$new_product->id));
+            return redirect()->to(route('Product.show', $new_product->id));
         } catch (\Exception $e) {
             return redirect()->back()->with('danger', 'Не вірно введені данні');
         }
@@ -85,7 +82,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -93,7 +90,7 @@ class ProductController extends Controller
         $product = Product::query()->where('id', $id)->first();
         $imgProd = Image::query()->where('product_id', $id)->get();
         $colorProd = Color::query()->where('product_id', $id)->get();
-        return view('admin.products.showProd',[
+        return view('admin.products.include.showProd', [
             'product' => $product,
             'imgProd' => $imgProd,
             'colorProd' => $colorProd,
@@ -103,19 +100,19 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $product = Product::query()->where('id', $id)->first();
-        $sub_category = Subcategory::query()->where('category_id', $product->category->id)->get();
-        $brand = Brand::query()->orderBy('name')->get();
-        $system = System::query()->orderBy('title')->get();
+        $sub_category = Subcategory::query()->select('id','title')->where('category_id', $product->category->id)->get();
+        $brand = Brand::query()->select('id','name')->orderBy('name')->get();
+        $system = System::query()->select('id','title')->orderBy('title')->get();
 
-        return view('admin.products.edit',[
+        return view('admin.products.edit', [
             'product' => $product,
-            'sub_categories' =>$sub_category,
+            'sub_categories' => $sub_category,
             'brand' => $brand,
             'system' => $system
 
@@ -125,13 +122,13 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $update = Product::query()->where('id',$id)->first();
+        $update = Product::query()->where('id', $id)->first();
         $update->title = $request->title;
         $update->QTY = $request->QTY;
         $update->price = $request->price;
@@ -149,13 +146,14 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $destroy = Product::where('id',$id)->first();
+        $destroy = Product::where('id', $id)->first();
         $destroy->delete();
         return redirect()->back()->with('message', 'Продукт було успішно видалено');
     }
+
 }

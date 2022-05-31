@@ -78,10 +78,7 @@
                                            style="width: 100%;" role="grid" aria-describedby="datatable_info">
                                         <thead>
                                         <tr role="row">
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                                colspan="1" style="width: 5px;" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending">№ID
-                                            </th>
+
                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
                                                 colspan="1" style="width: 44px;" aria-sort="ascending"
                                                 aria-label="Name: activate to sort column descending">Назва
@@ -119,7 +116,7 @@
                                             )->sum('price');?>
 
                                                 <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
-                                                    <td class="sorting_1">{{$subCat->id}}</td>
+
                                                     <td class="sorting_1">{{$subCat->title}}</td>
                                                     <td><?= $product ?></td>
                                                     <td>{{$productSum}} грн</td>
@@ -139,7 +136,7 @@
                                                            href="{{route('SubCategory.edit',$subCat->id)}}">Редагувати</a>
                                                     </td>
                                                 </tr>
-                                                </tr>
+                                                
 
                                                 </tr>
                                         @endforeach

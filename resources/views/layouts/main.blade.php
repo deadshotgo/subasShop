@@ -35,7 +35,8 @@
 
 <body>
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Body main wrapper start -->
@@ -106,78 +107,19 @@
                                     <li class="mega-parent"><a href="{{route('/shop')}}">Products</a>
                                         <div class="mega-menu-area clearfix">
                                             <div class="mega-menu-link f-left">
-                                                <ul class="single-mega-item">
-                                                    <li class="menu-title">Smart Phone</li>
-                                                    <li>
-                                                        <a href="#">All Mobile Phones</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Smart phones</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Android Mobiles</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Windows Mobiles</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Refurbished Mobiles</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">All Mobile Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Cases & Covers</a>
-                                                    </li>
-                                                </ul>
-                                                <ul class="single-mega-item">
-                                                    <li class="menu-title">Note Book</li>
-                                                    <li>
-                                                        <a href="">All Note Books</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Smart notebooks</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Android Note Book</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Windows Note Books</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Refurbished Note Books</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Note Books Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Cases & Covers</a>
-                                                    </li>
-                                                </ul>
-                                                <ul class="single-mega-item">
-                                                    <li class="menu-title">Tablets</li>
-                                                    <li>
-                                                        <a href="">All Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Smart tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Android Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Windows Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Refurbished Tablets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Tablets Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="">Cases & Covers</a>
-                                                    </li>
-                                                </ul>
+                                                @foreach($categories as $category)
+                                                    <?php $sub_categories = \App\Models\Subcategory::query()->select(['id', 'title'])->where('category_id', $category->id)->get() ?>
+                                                    <ul class="single-mega-item">
+                                                        <li class="menu-title">{{$category->title}}</li>
+                                                        @foreach($sub_categories as $sub_category)
+                                                            <li>
+
+                                                                <a href="#">{{$sub_category->title}}</a>
+
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endforeach
                                             </div>
                                             <div class="mega-menu-photo f-left">
                                                 <a href="#">
@@ -240,7 +182,7 @@
                                                     <div class="single-cart clearfix">
                                                         <div class="cart-img f-left">
                                                             <a href="#">
-                                                                <img src="img/cart/1.jpg" alt="Cart Product" />
+                                                                <img src="img/cart/1.jpg" alt="Cart Product"/>
                                                             </a>
                                                             <div class="del-icon">
                                                                 <a href="#">
@@ -267,7 +209,7 @@
                                                     <div class="single-cart clearfix">
                                                         <div class="cart-img f-left">
                                                             <a href="#">
-                                                                <img src="img/cart/1.jpg" alt="Cart Product" />
+                                                                <img src="img/cart/1.jpg" alt="Cart Product"/>
                                                             </a>
                                                             <div class="del-icon">
                                                                 <a href="#">
@@ -295,7 +237,7 @@
                                             <li>
                                                 <div class="top-cart-inner subtotal">
                                                     <h4 class="text-uppercase g-font-2">
-                                                        Total  =
+                                                        Total =
                                                         <span>$ 500.00</span>
                                                     </h4>
                                                 </div>
@@ -372,15 +314,20 @@
                                         <img src="img/logo/logo.png" alt="">
                                     </div>
                                     <div class="footer-brief">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the subas industry's standard dummy text ever since the 1500s,</p>
-                                        <p>When an unknown printer took a galley of type and If you are going to use a passage of Lorem Ipsum scrambled it to make.</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum has been the subas industry's standard dummy text ever since the
+                                            1500s,</p>
+                                        <p>When an unknown printer took a galley of type and If you are going to use a
+                                            passage of Lorem Ipsum scrambled it to make.</p>
                                     </div>
                                     <ul class="footer-social">
                                         <li>
-                                            <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
+                                            <a class="facebook" href="" title="Facebook"><i
+                                                    class="zmdi zmdi-facebook"></i></a>
                                         </li>
                                         <li>
-                                            <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
+                                            <a class="google-plus" href="" title="Google Plus"><i
+                                                    class="zmdi zmdi-google-plus"></i></a>
                                         </li>
                                         <li>
                                             <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
@@ -399,13 +346,15 @@
                                             <a href="#"><i class="zmdi zmdi-circle"></i><span>New Products</span></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="zmdi zmdi-circle"></i><span>Discount Products</span></a>
+                                            <a href="#"><i
+                                                    class="zmdi zmdi-circle"></i><span>Discount Products</span></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="zmdi zmdi-circle"></i><span>Best Sell Products</span></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="zmdi zmdi-circle"></i><span>Popular Products</span></a>
+                                            <a href="#"><i
+                                                    class="zmdi zmdi-circle"></i><span>Popular Products</span></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
@@ -414,7 +363,8 @@
                                             <a href="#"><i class="zmdi zmdi-circle"></i><span>Suppliers</span></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="zmdi zmdi-circle"></i><span>Special Products</span></a>
+                                            <a href="#"><i
+                                                    class="zmdi zmdi-circle"></i><span>Special Products</span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -454,8 +404,11 @@
                                         <form action="#">
                                             <input type="text" name="name" placeholder="Your name here...">
                                             <input type="text" name="email" placeholder="Your email here...">
-                                            <textarea class="height-80" name="message" placeholder="Your messege here..."></textarea>
-                                            <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">submit message</button>
+                                            <textarea class="height-80" name="message"
+                                                      placeholder="Your messege here..."></textarea>
+                                            <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">submit
+                                                message
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -472,7 +425,8 @@
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
                                 <div class="copyright-text">
-                                    <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio" target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
+                                    <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio"
+                                                 target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-12">
@@ -506,7 +460,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="modal-product clearfix">
@@ -534,7 +489,8 @@
                                     </form>
                                 </div>
                                 <div class="quick-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est
+                                    tristique auctor. Donec non est at libero.
                                 </div>
                                 <div class="social-sharing">
                                     <div class="widget widget_socialsharing_widget">

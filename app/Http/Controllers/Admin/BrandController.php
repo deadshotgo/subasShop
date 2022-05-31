@@ -16,7 +16,7 @@ class BrandController extends Controller
     public function index()
     {
 
-        $brands = Brand::all();
+        $brands = Brand::query()->select(['id','name','show','created_at'])->get();
         return view('admin.brands.brand',[
             'brands' => $brands,
         ]);

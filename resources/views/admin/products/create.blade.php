@@ -65,6 +65,22 @@
     @endsection
     <!-- page content -->
     <div class="right_col" role="main">
+        <div>
+            @if(session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h4>{{session('danger')}}</h4>
+                </div>
+            @endif
+        </div>
+        <div>
+            @if(session('message'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h4><i class="icon fa fa-check"></i>{{session('message')}}</h4>
+                </div>
+            @endif
+        </div>
         <div class="">
 
             <div class="clearfix"></div>

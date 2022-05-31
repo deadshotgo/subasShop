@@ -109,7 +109,7 @@
                                             <tbody>
                                             @foreach($categories as $category)
                                                 <?php $subcategory = \App\Models\Subcategory::query()->select(['id'])->where('category_id', $category->id)->count();?>
-                                                <?php $product= \App\Models\Product::query()->select(['id'])->where('category_id', $category->id)->count();?>
+                                                <?php $productId= \App\Models\Product::query()->select(['id'])->where('category_id', $category->id)->count();?>
                                                 <?php $productSum= \App\Models\Product::query()->select(['price'])->where('category_id',$category->id
                                                 )->sum('price');?>
 
@@ -119,7 +119,8 @@
                                                     @else Відображено  @endif</td>
                                                 <td><a href="{{route('SubCategory.show',$category->id)}}"
                                                        style="cursor: pointer;color: #0e90d2"><?= $subcategory ?></a></td>
-                                                <td>{{$product}}</td>
+                                                <td><a href="{{route('/search-prod',$category->id)}}"
+                                                       style="cursor: pointer;color: #0e90d2">{{$productId}}</a></td>
                                                 <td>{{$category->created_at}}</td>
                                                 <td>{{$productSum}} грн</td>
                                                 <td><form

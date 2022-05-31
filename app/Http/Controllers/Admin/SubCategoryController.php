@@ -25,7 +25,7 @@ class SubCategoryController extends Controller
      */
     public function create($id)
     {
-echo 123;
+
     }
 
     /**
@@ -58,7 +58,7 @@ echo 123;
 
             $new_sub_category->save();
 
-            return redirect()->back()->with('message', 'Категорію було успішно добавлено');
+            return redirect()->back()->with('message', 'Підкатегорію було успішно добавлено');
         } catch (\Exception $e) {
             return redirect()->back()->with('danger', 'Не вірно введені данні');
         }
@@ -73,8 +73,8 @@ echo 123;
     public function show($id)
     {
 
-        $subCats = Subcategory::query()->where('category_id',$id)->get();
-        $cat_name = Category::query()->where('id',$id)->first();
+        $subCats = Subcategory::query()->select(['id','title','created_at'])->where('category_id',$id)->get();
+        $cat_name = Category::query()->select(['id','title'])->where('id',$id)->first();
         return view('admin.subcat.subcategory',[
             'subCats' => $subCats,
             'cat_name' => $cat_name,

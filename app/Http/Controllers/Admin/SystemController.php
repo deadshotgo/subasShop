@@ -15,7 +15,7 @@ class SystemController extends Controller
      */
     public function index()
     {
-        $systems = System::all();
+        $systems = System::query()->select('id','title','created_at')->get();
         return view('admin.systems.system',[
             'systems' => $systems,
         ]);

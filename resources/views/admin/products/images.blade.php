@@ -118,7 +118,7 @@
                             <div class="col-md-55">
                                 <div class="thumbnail">
                                     <div class="image view view-first">
-                                        <img style="width: 100%; display: block;" src="/{{$img->path}}" alt="image">
+                                        <img style="width: 100%; height: 100%; display: block;" src="/{{$img->path}}" alt="image">
                                         <div class="mask">
                                             <p>Your id {{$img->id}}</p>
 
@@ -170,7 +170,7 @@
                                 <div class="col-md-55">
                                     <div class="thumbnail">
                                         <div class="image view view-first">
-                                            <div style="background-color: {{$color->color}}; width: 100%; height: 90%"></div>
+                                            <div style="background-color: {{$color->color}}; width: 100%; height: 100%"></div>
                                             <div class="mask">
                                                 <p>Your id {{$color->id}}</p>
                                                 <form

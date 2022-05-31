@@ -49,8 +49,11 @@
                         <div class="x_content">
 
                             <div class="col-md-7 col-sm-7 ">
+                                <div class="col-sm-6">
                                 <div class="product-image">
-                                    <img src="/{{$product->images}}" alt="...">
+
+                                    <img style="width: 100%; height: 100%" src="/{{$product->images}}" alt="...">
+
                                 </div>
                                 <div class="product_gallery">
                                     @foreach($imgProd as $image)
@@ -59,6 +62,8 @@
                                     </a>
                                     @endforeach
                                 </div>
+
+                            </div>
                             </div>
 
                             <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">

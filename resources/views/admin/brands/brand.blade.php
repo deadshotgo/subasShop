@@ -105,14 +105,15 @@
                                         </thead>
                                         <tbody>
                                         @foreach($brands as $brand)
-                                            <?php $product= \App\Models\Product::query()->select(['price'])->where('brand_id', $brand->id)->count();?>
-                                            <?php $productSum= \App\Models\Product::query()->select(['price'])->where('brand_id',$brand->id
+                                            <?php $productId = \App\Models\Product::query()->select(['id'])->where('brand_id', $brand->id)->count();?>
+                                            <?php $productSum = \App\Models\Product::query()->select(['price'])->where('brand_id',$brand->id
                                             )->sum('price');?>
                                             <tr role="row" class="@if($loop->index % 2 == 0 )odd @else even @endif">
                                                 <td class="" tabindex="0">{{$brand->name}}</td>
                                                 <td class="sorting_1">@if($brand->show == 0) Приховано
                                                     @else Відображено  @endif</td>
-                                                <td>{{$product}}</td>
+                                                <td><a href="{{route('/search-prod-brand',$brand->id)}}"
+                                                       style="cursor: pointer;color: #0e90d2">{{$productId}}</a></td>
                                                 <td>{{$brand->created_at}}</td>
                                                 <td>{{$productSum}} грн</td>
                                                 <td><form

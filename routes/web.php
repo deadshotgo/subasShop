@@ -15,10 +15,9 @@ use App\Http\Controllers\Admin;
 
 $path = '\App\Http\Controllers';
 
-
-Route::get('/', function () {
-    return view('index');
-})->name('/');
+Route::get('/',
+    'App\Http\Controllers\HomeController@index'
+)->name('/');
 
 Route::get('/shop', function () {
     return view('product.index');
@@ -47,50 +46,62 @@ Route::get('/det-prod', function () {
 
 
 Route::group(['middleware' => ['role:admin']], function () {
-    Route::group(['prefix' => 'Admin'], function () {
+    Route::group(['prefix' => 'Admin-panel'], function () {
         Route::resource('Category',Admin\CategoryController::class);
         Route::resource('SubCategory',Admin\SubCategoryController::class);
         Route::resource('Brand',Admin\BrandController::class);
         Route::resource('System',Admin\SystemController::class);
         Route::resource('Product',Admin\ProductController::class);
-        // ******** creat controllers
 
-        Route::get('/sub-cat/{id}',
-            'App\Http\Controllers\Admin\SubCategoryController@MyCreate')->name('/sub_cat_create');
-        Route::get('/create-prod-cat_id/{id}/',
-            'App\Http\Controllers\Admin\ProductController@MyCreate')->name('/create-prod');
+        // ******** ProdOption controllers
+        Route::get('/Create-Prod-Cat_id/{id}/',
+            'App\Http\Controllers\Admin\ProductController@MyCreate'
+        )->name('/create-prod');
 
-        // ******* end controllers
-        // ********* view controller
-
-        Route::get('/cat-to-prod/',
-            'App\Http\Controllers\Admin\OtheController@addToProd')->name('/cat-to-prod');
-
+        Route::get('/Product-by-Сategory/',
+            'App\Http\Controllers\Admin\ProdOptionController@addProdByCat'
+        )->name('/cat-to-prod');
         Route::get(
-            '/prod-images/{id}',
-            'App\Http\Controllers\Admin\OtheController@prodImg')->name('/prod-images');
+            '/Prod-Option/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@productOption'
+        )->name('/prod-images');
+        Route::get(
+            '/Product-by-Category/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@searchByCat'
+        )->name('/search-prod');
+        Route::get(
+            '/Product-by-Brand/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@searchByBrand'
+        )->name('/search-prod-brand');
+        Route::get(
+            '/Product-by-System/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@searchBySystem'
+        )->name('/search-prod-system');
 
-        // ******** end view
-        // ******** save controllers
 
         Route::post(
-            '/save-prod-img/',
-            'App\Http\Controllers\Admin\OtheController@storeImages')->name('/save-images');
+            '/save-images/',
+            'App\Http\Controllers\Admin\ProdOptionController@storeImages'
+        )->name('/save-images');
         Route::post(
-            '/save-prod-color/',
-            'App\Http\Controllers\Admin\OtheController@storeColor')->name('/save-color');
-
-        // ********* end save
-        // ********* destroy contrpollers
+            '/Save-Color/',
+            'App\Http\Controllers\Admin\ProdOptionController@storeColor'
+        )->name('/save-color');
 
         Route::delete(
-            '/delete-prod-images/{id}',
-            'App\Http\Controllers\Admin\OtheController@destroyImages')->name('/delete-images');
+            '/Delete-Prod-Images/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@destroyImages'
+        )->name('/delete-images');
         Route::delete(
-            '/delete-prod-color/{id}',
-            'App\Http\Controllers\Admin\OtheController@destroyColors')->name('/delete-color');
+            '/Delete-Color/{id}',
+            'App\Http\Controllers\Admin\ProdOptionController@destroyColors'
+        )->name('/delete-color');
 
-        // ********* end destroy
+        // ******* end ProdOption controllers
+
+        Route::get('/Sub-Cat/{id}',
+            'App\Http\Controllers\Admin\SubCategoryController@MyCreate'
+        )->name('/sub_cat_create');
 
     });
 
