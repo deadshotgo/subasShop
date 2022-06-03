@@ -158,6 +158,12 @@
                                                 <input id="middle-name" class="form-control col" type="text" name="price">
                                             </div>
                                         </div>
+                                    <div class="form-group row">
+                                        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Нова ціна</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input id="middle-name" class="form-control col" placeholder="не обовязково" type="text" name="new_price">
+                                        </div>
+                                    </div>
                                         <div class="form-group row">
                                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Під категорія <span class="required">*</span> </label>
                                             <div class="col-md-6 col-sm-6 ">

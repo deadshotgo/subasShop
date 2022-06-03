@@ -118,14 +118,22 @@
                                      </ul>
                                 </div>
                                 <br>
-
                                 <div class="">
                                     <div class="product_price">
                                         <h1 class="price">Ціна: {{$product->price}} грн</h1>
 
                                     </div>
                                 </div>
+@if($product->new_price != null)
 
+                                    <div class="">
+                                        <h3>Акція</h3>
+                                        <div class="product_price">
+                                            <h1 style="color: red" class="price">Ціна: {{$product->new_price}} грн</h1>
+
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
 
 

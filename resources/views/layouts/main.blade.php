@@ -7,30 +7,31 @@
     <title>@yield('title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
 
     <!-- All CSS Files -->
     <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- Nivo-slider css -->
-    <link rel="stylesheet" href="lib/css/nivo-slider.css">
+    <link rel="stylesheet" href="/lib/css/nivo-slider.css">
     <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="/css/core.css">
     <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="css/shortcode/shortcodes.css">
+    <link rel="stylesheet" href="/css/shortcode/shortcodes.css">
     <!-- Theme main style -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/responsive.css">
     <!-- Template color css -->
-    <link href="css/color/color-core.css" data-style="styles" rel="stylesheet">
+    <link href="/css/color/color-core.css" data-style="styles" rel="stylesheet">
     <!-- User style -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
 
     <!-- Modernizr JS -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -93,7 +94,7 @@
                         <div class="col-md-2 col-sm-6 col-xs-12">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="img/logo/logo.png" alt="main logo">
+                                    <img src="/img/logo/logo.png" alt="main logo">
                                 </a>
                             </div>
                         </div>
@@ -114,7 +115,7 @@
                                                         @foreach($sub_categories as $sub_category)
                                                             <li>
 
-                                                                <a href="#">{{$sub_category->title}}</a>
+                                                                <a href="{{route('/sort-by-category',$sub_category->id)}}">{{$sub_category->title}}</a>
 
                                                             </li>
                                                         @endforeach
@@ -149,7 +150,7 @@
                                         <button class="search-toggle">
                                             <i class="zmdi zmdi-search"></i>
                                         </button>
-                                        <form action="#">
+                                        <form action="{{'Product.index'}}" method="get">
                                             <div class="top-search-box">
                                                 <input type="text" placeholder="Search here your product...">
                                                 <button type="submit">
@@ -298,7 +299,15 @@
         </div>
     </div>
     <!-- END MOBILE MENU AREA -->
-
+    <div id="quickview-wrapper">
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div id="modal-content" class="modal-content">
+                    <!-- modal windows include ajax.modalProduct -->
+                </div>
+            </div>
+        </div>
+    </div>
     @yield('content')
 
 
@@ -444,6 +453,7 @@
                                         <a href="#"><img src="img/payment/4.jpg" alt=""></a>
                                     </li>
                                 </ul>
+
                             </div>
                         </div>
                     </div>
@@ -454,84 +464,7 @@
     <!-- END FOOTER AREA -->
 
     <!-- START QUICKVIEW PRODUCT -->
-    <div id="quickview-wrapper">
-        <!-- Modal -->
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-product clearfix">
-                            <div class="product-images">
-                                <div class="main-image images">
-                                    <img alt="" src="img/product/quickview.jpg">
-                                </div>
-                            </div><!-- .product-images -->
 
-                            <div class="product-info">
-                                <h1>Aenean eu tristique</h1>
-                                <div class="price-box-3">
-                                    <div class="s-price-box">
-                                        <span class="new-price">£160.00</span>
-                                        <span class="old-price">£190.00</span>
-                                    </div>
-                                </div>
-                                <a href="single-product-left-sidebar.html" class="see-all">See all features</a>
-                                <div class="quick-add-to-cart">
-                                    <form method="post" class="cart">
-                                        <div class="numbers-row">
-                                            <input type="number" id="french-hens" value="3">
-                                        </div>
-                                        <button class="single_add_to_cart_button" type="submit">Add to cart</button>
-                                    </form>
-                                </div>
-                                <div class="quick-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est
-                                    tristique auctor. Donec non est at libero.
-                                </div>
-                                <div class="social-sharing">
-                                    <div class="widget widget_socialsharing_widget">
-                                        <h3 class="widget-title-modal">Share this product</h3>
-                                        <ul class="social-icons clearfix">
-                                            <li>
-                                                <a class="facebook" href="#" target="_blank" title="Facebook">
-                                                    <i class="zmdi zmdi-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="google-plus" href="#" target="_blank" title="Google +">
-                                                    <i class="zmdi zmdi-google-plus"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="twitter" href="#" target="_blank" title="Twitter">
-                                                    <i class="zmdi zmdi-twitter"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="pinterest" href="#" target="_blank" title="Pinterest">
-                                                    <i class="zmdi zmdi-pinterest"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="rss" href="#" target="_blank" title="RSS">
-                                                    <i class="zmdi zmdi-rss"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- .product-info -->
-                        </div><!-- .modal-product -->
-                    </div><!-- .modal-body -->
-                </div><!-- .modal-content -->
-            </div><!-- .modal-dialog -->
-        </div>
-        <!-- END Modal -->
-    </div>
     <!-- END QUICKVIEW PRODUCT -->
 
 </div>
@@ -541,15 +474,37 @@
 <!-- Placed JS at the end of the document so the pages load faster -->
 
 <!-- jquery latest version -->
-<script src="js/vendor/jquery-3.1.1.min.js"></script>
+<script src="/js/vendor/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap framework js -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!-- jquery.nivo.slider js -->
-<script src="lib/js/jquery.nivo.slider.js"></script>
+<script src="/lib/js/jquery.nivo.slider.js"></script>
 <!-- All js plugins included in this file. -->
-<script src="js/plugins.js"></script>
+<script src="/js/plugins.js"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
+<script>
+
+    $('.product-modal').click(function () {
+        let id = $(this).attr('data-order');
+        $.ajax({
+            type: 'GET',
+            url: '{{route("/shop-modal")}}',
+            data: {
+                id: id,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+
+            success: function (html) {
+                $('#modal-content').html(html)
+
+            }
+        });
+
+    })
+</script>
 @yield('section_js')
 </body>
 

@@ -1,20 +1,20 @@
 @extends('layouts.main')
-@section('title','shop-page')
+@section('title','shop-pag1e')
 @section('section_js')
     <script>
         $(document).ready(function () {
             $('.sort-product-btn').click(function () {
-let positionParameters = location.pathname.indexOf('?')
+                let positionParameters = location.pathname.indexOf('?')
                 const orderby = $(this).data('order')
                 let url = location.pathname.substring(positionParameters,location.pathname.length);
-let newURL = url + '?';
- newURL += 'orderBy=' + orderby;
- history.pushState({},'',newURL);
+                let newURL = url + '?';
+                newURL += 'orderBy=' + orderby;
+                history.pushState({},'',newURL);
                 $.ajax({
-                    url: '{{route("/shop")}}',
+                    url: '{{route("/sort-by-category",$id)}}',
                     type:"GET",
                     data: {
-                         orderBy: orderby,
+                        orderBy: orderby,
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -28,13 +28,13 @@ let newURL = url + '?';
                 });
 
             })
+            $('.sort-product-btn').click(function () {
 
-
+            })
         })
     </script>
 @endsection
 @section('content')
-
 
     <!-- BREADCRUMBS SETCTION START -->
     <div class="breadcrumbs-section plr-200 mb-80">
@@ -91,17 +91,16 @@ let newURL = url + '?';
                                 </div>
                             </div>
                             <!-- shop-option end -->
-                            <!--  Tab Content start -->
-                        @include('partial.productView') <!-- Product show -->
-                            <!--  Tab Content end -->
+                            <!-- Tab Content start -->
+                            @include('partial.productView') <!-- Product show -->
+                            <!-- Tab Content end -->
                             {{$products->withQueryString()->links()}}
                             <!-- shop-pagination end -->
                         </div>
                     </div>
                     <div class="col-md-3 col-md-pull-9 col-sm-12">
-
-                        <!-- widget-categories -->
-                        @include('partial.sidebar') <!-- sidebar show-->
+                        <!-- widget-search -->
+                        @include('partial.sidebar')
                     </div>
                 </div>
             </div>

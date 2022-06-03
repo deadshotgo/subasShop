@@ -61,6 +61,10 @@ class ProductController extends Controller
             $new_product->title = $request->title;
             $new_product->QTY = $request->QTY;
             $new_product->price = $request->price;
+            if($request->new_price){
+                $new_product->new_price = $request->new_price;
+            }
+            $new_product->price = $request->price;
             $new_product->images = $request->feature_image;
             $new_product->description = $request->description;
             $new_product->information = $request->information;
@@ -132,6 +136,9 @@ class ProductController extends Controller
         $update->title = $request->title;
         $update->QTY = $request->QTY;
         $update->price = $request->price;
+        if($request->new_price){
+            $update->new_price = $request->new_price;
+        }
         $update->images = $request->feature_image;
         $update->description = $request->description;
         $update->information = $request->information;

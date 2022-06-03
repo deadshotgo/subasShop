@@ -29,11 +29,15 @@ class HomeController extends Controller
     {
         $categories = Category::query()->select(['id','title'])->limit(4)->get();
         $brands = Brand::query()->select(['id','name'])->get();
-        $randProducts = Product::query()->select(['id','title','price','QTY','description','images'])->get()->random(5);
+        $randProducts = Product::query()->select(['id','title','price','QTY','new_price','description','images'])->get()->random(5);
+        $oldproducts = Product::query()->select(['id','title','price','QTY','new_price','description','images'])->orderBy('created_at','DESC')->limit(8)->get();
+        $newProducts = Product::query()->select(['id','title','price','new_price','QTY','description','images'])->limit(8)->get();
         return view('index',[
             'categories' => $categories,
             'brands' => $brands,
             'randProducts' => $randProducts,
+            'oldproducts' => $oldproducts,
+            'newProducts' => $newProducts
         ]);
     }
 }

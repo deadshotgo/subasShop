@@ -19,9 +19,12 @@ Route::get('/',
     'App\Http\Controllers\HomeController@index'
 )->name('/');
 
-Route::get('/shop', function () {
-    return view('product.index');
-})->name('/shop');
+Route::get('/shop/category/{id}',
+    'App\Http\Controllers\ProductController@sortByCategory'
+)->name('/sort-by-category');
+
+Route::get('/shop','App\Http\Controllers\ProductController@index' )->name('/shop');
+Route::get('/shop/modal-product','App\Http\Controllers\ProductController@modalProduct' )->name('/shop-modal');
 
 Route::get('/blog', function () {
     return view('blog.index');
