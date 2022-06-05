@@ -11,13 +11,12 @@
                     <div class="slider-desc-3 slider-desc-4  text-center">
                         <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
                             <h1 class="slider2-title-2 cd-headline clip is-full-width">
-                                <span>New smart phone</span>
+                                <span>New brand</span>
                                 <span class="cd-words-wrapper">
                                         <b class="is-visible">Samsung</b>
-                                        <b>Apple</b>
-                                        <b>Microsoft</b>
-                                        <b>Nokia</b>
-                                        <b>Sony</b>
+                                    @foreach($brandCours as $brand)
+                                        <b>{{$brand->name}}</b>
+                                    @endforeach
                                     </span>
                             </h1>
                         </div>
@@ -40,62 +39,7 @@
     <section id="page-content" class="page-wrapper">
 
         <!-- UP COMMING PRODUCT SECTION START -->
-        <div class="up-comming-product-section mb-80">
-            <div class="container">
-                <div class="row">
-                    <!-- up-comming-pro -->
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-                        <div class="up-comming-pro gray-bg clearfix">
-                            <div class="up-comming-pro-img f-left">
-                                <a href="#">
-                                    <img src="img/up-comming/1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="up-comming-pro-info f-left">
-                                <h3><a href="{{route('/det-prod')}}">Dummy Product Name</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitest, sed do eiusmod tempor
-                                    incididunt ut labore et dolores top magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exer citation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    laborum. </p>
-                                <div class="up-comming-time">
-                                    <div data-countdown="2017/01/15"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 hidden-sm col-xs-12">
-                        <div class="banner-item banner-1">
-                            <div class="ribbon-price">
-                                <span>$ 896.00</span>
-                            </div>
-                            <div class="banner-img">
-                                <a href="#"><img src="img/banner/1.jpg" alt=""></a>
-                            </div>
-                            <div class="banner-info">
-                                <h3><a href="#">Product Name</a></h3>
-                                <ul class="banner-featured-list">
-                                    <li>
-                                        <i class="zmdi zmdi-check"></i><span>Lorem ipsum dolor</span>
-                                    </li>
-                                    <li>
-                                        <i class="zmdi zmdi-check"></i><span>amet, consectetur</span>
-                                    </li>
-                                    <li>
-                                        <i class="zmdi zmdi-check"></i><span>adipisicing elitest,</span>
-                                    </li>
-                                    <li>
-                                        <i class="zmdi zmdi-check"></i><span>eiusmod tempor</span>
-                                    </li>
-                                    <li>
-                                        <i class="zmdi zmdi-check"></i><span>labore et dolore.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- UP COMMING PRODUCT SECTION END -->
 
         <!-- BY BRAND SECTION START-->
@@ -112,15 +56,17 @@
                 <div class="by-brand-product">
                     <div class="row active-by-brand slick-arrow-2">
                         <!-- single-brand-product start -->
-                        @foreach($brands as $brand)
+                        @foreach($brandCours as $brand)
+@if($brand->images)
                             <div class="col-xs-12">
                                 <div class="single-brand-product">
-                                    <a href="single-product.html"><img src="img/product/5.jpg" alt=""></a>
+                                    <a><img  style="height: 200px" src="{{$brand->images}}" alt=""></a>
                                     <h3 class="brand-title text-gray">
                                         <a href="#">{{$brand->name}}</a>
                                     </h3>
                                 </div>
                             </div>
+@endif
                         @endforeach
                         <!-- single-brand-product end -->
                     </div>
@@ -154,7 +100,7 @@
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="single-product.html">{{$randProduct->title}}</a>
+                                            <a href="{{route('/det-prod/',$randProduct->id)}}">{{$randProduct->title}}</a>
                                         </h6>
                                         <div class="pro-rating">
                                             <a href="#"><i class="zmdi zmdi-star"></i></a>
@@ -230,7 +176,7 @@
                                             </div>
                                             <div class="product-info">
                                                 <h6 class="product-title">
-                                                    <a href="single-product.html">{{$oldproduct->title}}</a>
+                                                    <a href="{{route('/det-prod/',$oldproduct->id)}}">{{$oldproduct->title}}</a>
                                                 </h6>
                                                 <div class="pro-rating">
                                                     <a href="#"><i class="zmdi zmdi-star"></i></a>
@@ -282,7 +228,7 @@
                                                 </div>
                                                 <div class="product-info">
                                                     <h6 class="product-title">
-                                                        <a href="single-product.html">{{$newProduct->title}}</a>
+                                                        <a href="{{route('/det-prod/',$newProduct->id)}}">{{$newProduct->title}}</a>
                                                     </h6>
                                                     <div class="pro-rating">
                                                         <a href="#"><i class="zmdi zmdi-star"></i></a>

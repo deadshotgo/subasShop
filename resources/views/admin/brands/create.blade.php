@@ -2,11 +2,62 @@
 @section('title','create-page')
 @section('custom_js')
     <script src="/admin/admi.js"></script>
+    <!-- jQuery Smart Wizard -->
+    <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.js"></script>
+    <script type="text/javascript" src="/admin/colorbox-master/jquery.colorbox-min.js"></script>
+    <script src="/admin/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+    <script>
+        function elFinderBrowser (callback, value, meta) {
+            tinymce.activeEditor.windowManager.openUrl({
+                title: 'File Manager',
+                url: '/elfinder/tinymce5',
+                /**
+                 * On message will be triggered by the child window
+                 *
+                 * @param dialogApi
+                 * @param details
+                 * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+                 */
+                onMessage: function (dialogApi, details) {
+                    if (details.mceAction === 'fileSelected') {
+                        const file = details.data.file;
+
+                        // Make file info
+                        const info = file.name;
+
+                        // Provide file and text for the link dialog
+                        if (meta.filetype === 'file') {
+                            callback(file.url, {text: info, title: info});
+                        }
+
+                        // Provide image and alt text for the image dialog
+                        if (meta.filetype === 'image') {
+                            callback(file.url, {alt: info});
+                        }
+
+                        // Provide alternative source and posted for the media dialog
+                        if (meta.filetype === 'media') {
+                            callback(file.url);
+                        }
+
+                        dialogApi.close();
+                    }
+                }
+            });
+        }
+    </script>
 @endsection
 @section('custom_css')
     <link href="/styles/prod.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/admin/build/css/custom.min.css" rel="stylesheet">
+    <link href="/admin/colorbox-master/example1/colorbox.css" rel="stylesheet">
 @endsection
 @section('content')
+
+
 
     <div role="main" class="right_col  ">
         <div class="">
@@ -76,6 +127,18 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Головна картинка <span class="required">*</span></label>
+                                                <div class="col-md-4 col-sm-6 ">
+                                                    <input type="text" class="form-control col" id="feature_image" name="feature_image" value="" readonly>
+                                                </div>
+                                                <a href=""  class="popup_selector btn btn-primary " data-inputid="feature_image">Select Image</a>
+
+
+                                            </div>
+                                            <img style="display: block; width: 300px;" class="imgUploaded">
+
+
                                             <div class="ln_solid"></div>
                                             <div class="item form-group right">
                                                 <div class="col-md-12 col-sm-12 ">

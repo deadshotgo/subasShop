@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="mega-menu-photo f-left">
                                                 <a href="#">
-                                                    <img src="img/mega-menu/1.jpg" alt="mega menu image">
+                                                    <img src="/storage/1642036080_17-abrakadabra-fun-p-temnii-fon-kompyuter-21.jpg" alt="mega menu image">
                                                 </a>
                                             </div>
                                         </div>

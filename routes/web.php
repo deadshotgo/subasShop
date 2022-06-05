@@ -43,9 +43,7 @@ Route::get('/contact', function () {
 })->name('/contact');
 
 
-Route::get('/det-prod', function () {
-    return view('product.detal');
-})->name('/det-prod');
+Route::get('/det-prod/{id}','App\Http\Controllers\ProductController@showProduct')->name('/det-prod/');
 
 
 Route::group(['middleware' => ['role:admin']], function () {

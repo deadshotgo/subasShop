@@ -16,8 +16,8 @@ class BrandController extends Controller
     public function index()
     {
 
-        $brands = Brand::query()->select(['id','name','show','created_at'])->get();
-        return view('admin.brands.brand',[
+        $brands = Brand::query()->select(['id', 'name', 'show', 'created_at'])->get();
+        return view('admin.brands.brand', [
             'brands' => $brands,
         ]);
     }
@@ -36,7 +36,7 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,13 +45,17 @@ class BrandController extends Controller
             $newBrand = new Brand();
             $newBrand->name = $request->name;
             $newBrand->show = $request->show;
-            if($request->title_m){
+            if ($request->feature_image) {
+                $newBrand->images = $request->feature_image;
+            }
+            if ($request->title_m) {
                 $newBrand->title_m = $request->title_m;
-            }else {
+            } else {
                 $newBrand->title_m = $request->name;
-            }if($request->description_n){
+            }
+            if ($request->description_n) {
                 $newBrand->description_n = $request->description_m;
-            }else{
+            } else {
                 $newBrand->description_n = $request->name;
             }
 
@@ -66,7 +70,7 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,13 +80,13 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $brand = Brand::query()->where('id',$id)->first();
-        return view('admin.brands.edit',[
+        $brand = Brand::query()->where('id', $id)->first();
+        return view('admin.brands.edit', [
             'brand' => $brand,
         ]);
     }
@@ -91,15 +95,18 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::query()->where('id',$id)->first();
+        $brand = Brand::query()->where('id', $id)->first();
         $brand->name = $request->name;
         $brand->show = $request->show;
+
+        $brand->images = $request->feature_image;
+
         $brand->title_m = $request->title_m;
         $brand->description_n = $request->description_m;
         $brand->save();
@@ -109,12 +116,12 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $delete = Brand::where('id',$id)->first();
+        $delete = Brand::where('id', $id)->first();
         $delete->delete();
         return redirect()->back()->with('message', 'Бренд було успішно видалено');
     }

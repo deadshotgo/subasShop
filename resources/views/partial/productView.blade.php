@@ -7,7 +7,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="product-item">
                         <div class="product-img">
-                            <a href="single-product.html">
+                            <a href="{{route('/det-prod/',$product->id)}}">
                                 <img style="width: 270px; height: 300px"
                                      src="/{{$product->images}}"
                                      alt=""/>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="product-info">
                             <h6 class="product-title">
-                                <a href="single-product.html">{{$product->title}}</a>
+                                <a href="{{route('/det-prod/',$product->id)}}">{{$product->title}}</a>
                             </h6>
                             <div class="pro-rating">
                                 <a href="#"><i class="zmdi zmdi-star"></i></a>
